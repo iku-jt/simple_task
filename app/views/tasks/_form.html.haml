@@ -1,0 +1,20 @@
+= form_for @task do |f|
+  -if @task.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      %ul
+        - @task.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :deadline
+    = f.datetime_select :deadline, {}, {:class => "span1"}
+  .field
+    = f.label :todo
+    = f.text_area :todo, :rows => 3
+  -unless @task.new_record?
+    .field
+      = f.label :done
+      = f.check_box :done
+  .actions
+    = f.submit 'Save', :class => "btn btn-primary"

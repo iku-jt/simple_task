@@ -24,7 +24,7 @@ describe TasksController do
   # Task. As you add validations to Task, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    { todo: "First todo" }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -81,7 +81,7 @@ describe TasksController do
 
       it "redirects to the created task" do
         post :create, {:task => valid_attributes}, valid_session
-        response.should redirect_to(Task.last)
+        response.should redirect_to(tasks_path)
       end
     end
 
@@ -96,6 +96,7 @@ describe TasksController do
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
+        Task.any_instance.stub(:errors).and_return({:todo => "invalid"})
         post :create, {:task => {}}, valid_session
         response.should render_template("new")
       end
@@ -123,7 +124,7 @@ describe TasksController do
       it "redirects to the task" do
         task = Task.create! valid_attributes
         put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
-        response.should redirect_to(task)
+        response.should redirect_to(tasks_path)
       end
     end
 
@@ -140,6 +141,7 @@ describe TasksController do
         task = Task.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
+        Task.any_instance.stub(:errors).and_return({:todo => "invalid"})
         put :update, {:id => task.to_param, :task => {}}, valid_session
         response.should render_template("edit")
       end

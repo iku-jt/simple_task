@@ -1,0 +1,16 @@
+%table.table
+  %tr
+    %th.span8 Todo
+    %th Deadline
+    %th Done
+    %th
+
+  - tasks.each do |task|
+    %tr
+      %td
+        = link_to task.todo, edit_task_path(task)
+      %td= task.deadline
+      %td= task.done
+      %td= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete
+
+%br

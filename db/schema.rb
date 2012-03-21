@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321112443) do
+ActiveRecord::Schema.define(:version => 20120321114617) do
 
   create_table "tasks", :force => true do |t|
     t.datetime "deadline"

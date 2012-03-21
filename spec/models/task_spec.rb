@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Task do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should return error if invalid param" do
+    task = Task.new
+    task.should_not be_valid
+    task.should have(1).errors_on(:todo)
+  end
 end

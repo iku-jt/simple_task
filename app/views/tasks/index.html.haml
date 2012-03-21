@@ -1,0 +1,8 @@
+%h1 Listing tasks
+%h2 Today tasks
+= render partial: 'table', locals: {tasks: today_tasks}
+
+%h2 Other tasks
+= render partial: 'table', locals: {tasks: @tasks - today_tasks}
+
+= button_to 'New Task', new_task_path, :method => "get", :class => "btn btn-primary"

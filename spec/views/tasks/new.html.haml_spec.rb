@@ -14,7 +14,6 @@ describe "tasks/new" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form", :action => tasks_path, :method => "post" do
       assert_select "textarea#task_todo", :name => "task[todo]"
-      assert_select "input#task_done", :name => "task[done]"
     end
   end
 end
